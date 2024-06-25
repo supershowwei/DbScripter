@@ -82,13 +82,13 @@ namespace DbScripter
                         SchemaQualify = true,                                           // 結構描述會限定物件名稱
                         Bindings = false,                                               // 繫結選項
                         NoCollation = true,                                             // 指令碼定序：在欄位宣告後面加入 COLLATION
-                        ScriptForCreateDrop = false,                                     // 編寫 DROP 和 CREATE 的指令碼：沒有直接一個選項，但是可以透過組合 ScriptDrops=True 和 ScriptDrops=False 的指令碼來完成。
+                        ScriptForCreateDrop = false,                                    // 編寫 DROP 和 CREATE 的指令碼：沒有直接一個選項，但是可以透過組合 ScriptDrops=True 和 ScriptDrops=False 的指令碼來完成。
                         ExtendedProperties = true,                                      // 編寫擴充屬性的指令碼
                         TargetServerVersion = SqlServerVersion.Version160,              // 針對伺服器版本編寫指令碼
                         TargetDatabaseEngineEdition = DatabaseEngineEdition.Standard,   // 資料庫引擎版本的指令碼 
                         TargetDatabaseEngineType = DatabaseEngineType.Standalone,       // 資料庫引擎類型的指令碼
                         ScriptOwner = false,                                            // 編寫擁有者的指令碼
-                        IncludeDatabaseContext = true,                                  // 編寫 USE DATABASE 的指令碼
+                        IncludeDatabaseContext = false,                                 // 編寫 USE DATABASE 的指令碼
 
                         ScriptSchema = true,                                            // 要編寫指令碼的資料類型
                         ScriptData = false,
