@@ -119,6 +119,7 @@ namespace DbScripter
 
             if (arguments.Type != null && arguments.Type.Equals("SchemaAndData", StringComparison.OrdinalIgnoreCase))
             {
+                scripter.Options.IncludeIfNotExists = true;
                 scripter.Options.ScriptForCreateDrop = true;
                 scripter.Options.ScriptData = true;
             }
