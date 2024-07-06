@@ -8,9 +8,13 @@
 
         public string[] Tables { get; set; }
 
+        public bool IncludeTriggers { get; set; }
+
         public string[] Views { get; set; }
 
         public string[] StoredProcedures { get; set; }
+
+        public string[] Functions { get; set; }
 
         public string Type { get; set; }
 

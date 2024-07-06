@@ -33,11 +33,17 @@ namespace DbScripter
                     case "-tables":
                         arguments.Tables = args[++i].Trim('"').Split(',');
                         break;
+                    case "-includetriggers":
+                        arguments.IncludeTriggers = true;
+                        break;
                     case "-views":
                         arguments.Views = args[++i].Trim('"').Split(',');
                         break;
                     case "-storedprocedures":
                         arguments.StoredProcedures = args[++i].Trim('"').Split(',');
+                        break;
+                    case "-functions":
+                        arguments.Functions = args[++i].Trim('"').Split(',');
                         break;
                     case "-type":
                         arguments.Type = args[++i].Trim('"');
@@ -104,7 +110,7 @@ namespace DbScripter
                         Indexes = false,                                                // 編寫索引的指令碼
                         DriUniqueKeys = true,                                           // 編寫唯一索引鍵的指令碼
                         ScriptDataCompression = true,                                   // 編寫資料壓縮選項的指令碼
-                        Triggers = false,                                               // 編寫觸發程序的指令碼
+                        Triggers = arguments.IncludeTriggers,                           // 編寫觸發程序的指令碼
                         ChangeTracking = false,                                         // 編寫變更追蹤選項的指令碼
 
                                                                                         // 包括不支援的陳述式 (?)
@@ -166,6 +172,19 @@ namespace DbScripter
                     if (arguments.StoredProcedures.Any(a => a.Equals("*") || a.Equals(storedProcedure.Name, StringComparison.OrdinalIgnoreCase)))
                     {
                         urnList.Add(storedProcedure.Urn);
+                    }
+                }
+            }
+
+            if (arguments.Functions != null && arguments.Functions.Length > 0)
+            {
+                foreach (UserDefinedFunction function in database.UserDefinedFunctions)
+                {
+                    if (function.IsSystemObject) continue;
+
+                    if (arguments.Functions.Any(a => a.Equals("*") || a.Equals(function.Name, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        urnList.Add(function.Urn);
                     }
                 }
             }
