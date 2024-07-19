@@ -20,6 +20,8 @@
 
         public string Type { get; set; }
 
+        public bool DropAndCreate { get; set; }
+
         public string Output { get; set; }
     }
 }

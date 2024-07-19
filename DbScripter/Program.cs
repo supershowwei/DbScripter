@@ -51,6 +51,9 @@ namespace DbScripter
                     case "-type":
                         arguments.Type = args[++i].Trim('"');
                         break;
+                    case "-dropandcreate":
+                        arguments.DropAndCreate = true;
+                        break;
                     case "-output":
                         arguments.Output = args[++i].Trim('"');
                         break;
@@ -163,10 +166,14 @@ namespace DbScripter
                 }
             }
 
-            if (arguments.Type != null && arguments.Type.Equals("SchemaAndData", StringComparison.OrdinalIgnoreCase))
+            if (arguments.DropAndCreate)
             {
                 scripter.Options.IncludeIfNotExists = true;
                 scripter.Options.ScriptForCreateDrop = true;
+            }
+
+            if (arguments.Type != null && arguments.Type.Equals("SchemaAndData", StringComparison.OrdinalIgnoreCase))
+            {
                 scripter.Options.ScriptData = true;
             }
             else if (arguments.Type != null && arguments.Type.Equals("Data", StringComparison.OrdinalIgnoreCase))
