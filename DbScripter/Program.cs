@@ -27,6 +27,9 @@ namespace DbScripter
                     case "-connectionstring":
                         arguments.ConnectionString = args[++i].Trim('"');
                         break;
+                    case "-version":
+                        arguments.Version = args[++i].Trim('"');
+                        break;
                     case "-database":
                         arguments.Database = args[++i].Trim('"');
                         break;
@@ -122,6 +125,43 @@ namespace DbScripter
             };
 
             scripter.PrefetchObjects = true;
+
+            if (!string.IsNullOrEmpty(arguments.Version) && int.TryParse(arguments.Version, out var version))
+            {
+                switch (version)
+                {
+                    case 80:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version80;
+                        break;
+                    case 90:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version90;
+                        break;
+                    case 100:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version100;
+                        break;
+                    case 105:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version105;
+                        break;
+                    case 110:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version110;
+                        break;
+                    case 120:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version120;
+                        break;
+                    case 130:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version130;
+                        break;
+                    case 140:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version140;
+                        break;
+                    case 150:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version150;
+                        break;
+                    case 160:
+                        scripter.Options.TargetServerVersion = SqlServerVersion.Version160;
+                        break;
+                }
+            }
 
             if (arguments.Type != null && arguments.Type.Equals("SchemaAndData", StringComparison.OrdinalIgnoreCase))
             {
