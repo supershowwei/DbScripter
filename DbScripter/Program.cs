@@ -54,6 +54,9 @@ namespace DbScripter
                     case "-dropandcreate":
                         arguments.DropAndCreate = true;
                         break;
+                    case "-appendfile":
+                        arguments.AppendFile = args[++i].Trim('"');
+                        break;
                     case "-output":
                         arguments.Output = args[++i].Trim('"');
                         break;
@@ -253,6 +256,12 @@ namespace DbScripter
             else
             {
                 WriteStatements(scripter, urnList, builder);
+            }
+
+            if (!string.IsNullOrEmpty(arguments.AppendFile) && File.Exists(arguments.AppendFile))
+            {
+                builder.AppendLine();
+                builder.AppendLine(File.ReadAllText(arguments.AppendFile));
             }
             
             File.WriteAllText(arguments.Output, builder.ToString());

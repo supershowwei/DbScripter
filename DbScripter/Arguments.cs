@@ -22,6 +22,8 @@
 
         public bool DropAndCreate { get; set; }
 
+        public string AppendFile { get; set; }
+
         public string Output { get; set; }
     }
 }
