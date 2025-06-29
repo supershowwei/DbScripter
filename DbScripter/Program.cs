@@ -116,7 +116,7 @@ namespace DbScripter
                         DriPrimaryKey = true,                                           // 編寫主索引鍵的指令碼
                         DriForeignKeys = true,                                          // 編寫外部索引鍵的指令碼
                         FullTextIndexes = false,                                        // 編寫全文檢索索引的指令碼
-                        Indexes = false,                                                // 編寫索引的指令碼
+                        Indexes = true,                                                // 編寫索引的指令碼
                         DriUniqueKeys = true,                                           // 編寫唯一索引鍵的指令碼
                         ScriptDataCompression = true,                                   // 編寫資料壓縮選項的指令碼
                         Triggers = arguments.IncludeTriggers,                           // 編寫觸發程序的指令碼
